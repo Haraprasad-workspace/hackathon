@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - E-Waste Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1a1a1a, #333);
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <nav class="bg-black bg-opacity-90 p-4 flex flex-wrap justify-between items-center shadow-lg">
+        <h1 class="text-2xl font-bold text-green-400">E-Waste Dashboard</h1>
+        <div class="hidden md:flex space-x-6">
+            <a href="dashboard.html" class="text-white hover:text-green-400 transition">Home</a>
+            <a href="pickup.html" class="text-white hover:text-green-400 transition">Pickup Scheduling</a>
+            <a href="chatbot.html" class="text-white hover:text-green-400 transition">AI Chatbot</a>
+            <a href="image_classification.html" class="text-white hover:text-green-400 transition">AI Waste Classification</a>
+            <a href="#" class="text-white hover:text-green-400 transition">FAQs</a>
+            <a href="profile.html" class="text-white hover:text-green-400 transition">Profile</a>
+            <a href="recycleOrTrash.html" class="text-white hover:text-green-400 transition">Learn with Games</a>
+        </div>
+        <button class="bg-green-500 px-4 py-2 rounded-full text-white hover:bg-green-600 transition md:block hidden">
+            Log Out
+        </button>
+    </nav>
+
+    <!-- FAQ Section -->
+    <div class="max-w-6xl mx-auto mt-10 p-6 bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold text-green-300 mb-6 text-center">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+            <!-- FAQ Items -->
+            <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <summary class="text-lg font-bold text-green-400 cursor-pointer">What is e-waste, and why is it important to dispose of it properly?</summary>
+                <p class="text-gray-300 mt-2 text-sm">E-waste includes discarded electronic devices like old phones, computers, and appliances. Proper disposal prevents environmental damage and health risks caused by toxic materials like lead and mercury.</p>
+            </details>
+
+            <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <summary class="text-lg font-bold text-green-400 cursor-pointer">How does this platform help in e-waste management?</summary>
+                <p class="text-gray-300 mt-2 text-sm">Our AI-powered platform connects rural citizens with authorized e-waste recyclers, offers educational resources, and provides pickup scheduling for easy disposal.</p>
+            </details>
+
+            <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <summary class="text-lg font-bold text-green-400 cursor-pointer">Who can use this platform?</summary>
+                <p class="text-gray-300 mt-2 text-sm">Any citizen of the Rajkot District can use this platform to dispose of e-waste. Registered recyclers with GPCB can also use it to collect and process waste.</p>
+            </details>
+
+            <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <summary class="text-lg font-bold text-green-400 cursor-pointer">Is there a cost for using the e-waste pickup service?</summary>
+                <p class="text-gray-300 mt-2 text-sm">No, our platform provides free e-waste pickup services in designated rural areas. However, in some cases, recyclers may offer incentives for certain types of e-waste.</p>
+            </details>
+            
+            <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <summary class="text-lg font-bold text-green-400 cursor-pointer">What happens to my e-waste after collection?</summary>
+                <p class="text-gray-300 mt-2 text-sm">The collected e-waste is sent to registered recyclers who extract valuable materials and dispose of hazardous components in an environmentally friendly way.</p>
+            </details>
+            
+            <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <summary class="text-lg font-bold text-green-400 cursor-pointer">How can I schedule an e-waste pickup?</summary>
+                <p class="text-gray-300 mt-2 text-sm">Simply log in to the platform, select "Schedule Pickup," enter your location, and choose a convenient time. Our AI will assign the best route for recyclers.</p>
+            </details>
+
+            <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <summary class="text-lg font-bold text-green-400 cursor-pointer">Can I track my e-waste pickup request?</summary>
+                <p class="text-gray-300 mt-2 text-sm">Yes! Once your pickup is scheduled, you can track the recycler’s location in real-time through our platform.</p>
+            </details>
+
+            <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <summary class="text-lg font-bold text-green-400 cursor-pointer">How does the AI chatbot help in e-waste management?</summary>
+                <p class="text-gray-300 mt-2 text-sm">The chatbot answers your questions about e-waste, educates users about proper disposal methods, and assists in scheduling pickups.</p>
+            </details>
+
+            <details class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <summary class="text-lg font-bold text-green-400 cursor-pointer">Are there any rewards for recycling e-waste?</summary>
+                <p class="text-gray-300 mt-2 text-sm">Yes! Our platform uses a gamification system where users earn points for responsible e-waste disposal. These points can be redeemed for incentives or community recognition.</p>
+            </details>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black mt-10 p-4 text-center text-white">
+        <p class="text-lg">📞 If you have any doubts, call us at <span class="font-bold">+91 920282719</span></p>
+    </footer>
+
+</body>
+</html>
