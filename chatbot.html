@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Waste Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1a1a1a, #333);
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        #chatBox {
+            height: 60vh;
+            overflow-y: auto;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 80vh;
+            max-width: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-green-100 to-green-300 flex justify-center items-center h-screen">
+
+    <nav class="bg-black bg-opacity-90 p-4 flex justify-between items-center shadow-lg w-full">
+        <h1 class="text-2xl font-bold text-green-400">E-Waste Dashboard</h1>
+        <div class="space-x-6">
+            <a href="dashboard.html" class="text-white hover:text-green-400">Home</a>
+            <a href="pickup.html" class="text-white hover:text-green-400">Pickup Scheduling</a>
+            <a href="chatbot.html" class="text-white hover:text-green-400">AI Chatbot</a>
+            <a href="image_classification.html" class="text-white hover:text-green-400">AI Waste Classification</a>
+            <a href="faq.html" class="text-white hover:text-green-400">FAQs</a>
+            <a href="profile.html" class="text-white hover:text-green-400">Profile</a>
+            <a href="recycleOrTrash.html" class="text-white hover:text-green-400">Learn with Games</a>
+        </div>
+        <button class="bg-green-500 px-4 py-2 rounded-full text-white hover:bg-green-600">Log Out</button>
+    </nav>
+
+    <div class="chat-container bg-white shadow-lg rounded-lg border border-green-500">
+        <div class="bg-green-700 text-white text-center py-3 font-bold text-lg rounded-t-lg">E-Waste Chatbot</div>
+        <div id="chatBox" class="flex-1 overflow-y-auto p-3 space-y-3 bg-green-50"></div>
+        <div class="border-t flex items-center p-3 bg-green-100">
+            <input type="text" id="userInput" placeholder="Type your message..." class="flex-1 px-3 py-2 rounded-lg border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-500">
+            <button id="sendBtn" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg ml-2">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("sendBtn").addEventListener("click", sendMessage);
+        document.getElementById("userInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        async function sendMessage() {
+            let userInput = document.getElementById("userInput").value.trim();
+            if (!userInput) return;
+            let chatBox = document.getElementById("chatBox");
+            
+            let userMessage = document.createElement("div");
+            userMessage.classList.add("bg-green-500", "text-white", "p-2", "rounded-lg", "max-w-xs", "self-end", "ml-auto", "shadow-md");
+            userMessage.innerText = userInput;
+            chatBox.appendChild(userMessage);
+            document.getElementById("userInput").value = "";
+            
+            let botTyping = document.createElement("div");
+            botTyping.classList.add("bg-gray-300", "text-black", "p-2", "rounded-lg", "max-w-xs", "shadow-md");
+            botTyping.innerText = "Typing...";
+            chatBox.appendChild(botTyping);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+            let aiResponse = await getAIResponse(userInput);
+            chatBox.removeChild(botTyping);
+            
+            let botMessage = document.createElement("div");
+            botMessage.classList.add("bg-green-200", "text-black", "p-2", "rounded-lg", "max-w-xs", "shadow-md");
+            botMessage.innerHTML = aiResponse;
+            chatBox.appendChild(botMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        async function getAIResponse(userText) {
+    try {
+        let response = await fetch("https://your-backend.onrender.com/chatbot", {
+            // Fixed API URL
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userText })
+        });
+
+        if (!response.ok) throw new Error("Server error");
+        
+        let data = await response.json();
+        return data.reply || "Sorry, I didn't understand. Please ask about e-waste disposal.";
+    } catch (error) {
+        console.error("Error:", error);
+        return "Something went wrong. Try again!";
+    }
+}
+
+    </script>
+
+</body>
+</html>
