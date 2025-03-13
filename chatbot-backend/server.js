@@ -6,9 +6,9 @@ const cors = require('cors');
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: ["https://smart-ewasterajkot.vercel.app"], // Allow frontend domain
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"]
+    origin: "https://smart-ewasterajkot.vercel.app", // Allow frontend domain
+    methods: "GET,POST",
+    allowedHeaders: "Content-Type"
 }));
 
 const API_KEY = process.env.API_KEY;
