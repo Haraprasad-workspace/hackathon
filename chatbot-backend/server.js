@@ -5,7 +5,11 @@ const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: '*' })); // Set specific origins in production
+app.use(cors({
+    origin: "https://smart-ewasterajkot.vercel.app",  // Allow frontend domain
+    methods: "GET, POST",
+    allowedHeaders: "Content-Type"
+}));
 
 const API_KEY = process.env.API_KEY;
 
@@ -20,7 +24,7 @@ app.post('/chatbot', async (req, res) => {
             return res.status(400).json({ reply: "Message cannot be empty." });
         }
 
-        // System Prompt (Your actual prompt)
+        // System Prompt
         const systemPrompt = "You are an expert in e-waste recycling and disposal in India. Answer user queries with clear, factual responses related to e-waste. If the question is not about e-waste, politely guide the user towards e-waste-related topics. Also, have complete information regarding the policies of CPCB India and GPCB Gujarat. Remember that your user is most probably a rural person, so guide accordingly. Keep responses short, crisp, and accurate.";
 
         const payload = {
@@ -44,7 +48,7 @@ app.post('/chatbot', async (req, res) => {
             return res.status(500).json({ reply: "No response from AI. Please try again." });
         }
 
-        const botReply = response.data.candidates[0]?.content?.parts?.[0]?.text || "Sorry, I didn't understand.";
+        const botReply = response.data.candidates?.[0]?.content?.parts?.map(part => part.text).join(" ") || "Sorry, I didn't understand.";
         res.json({ reply: botReply });
 
     } catch (error) {
@@ -52,7 +56,6 @@ app.post('/chatbot', async (req, res) => {
         res.status(500).json({ reply: "Error processing your request." });
     }
 });
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
