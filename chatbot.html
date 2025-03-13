@@ -61,56 +61,66 @@
 
    <script>
     document.getElementById("sendBtn").addEventListener("click", sendMessage);
-    document.getElementById("userInput").addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            sendMessage();
-        }
-    });
+document.getElementById("userInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
 
-    async function sendMessage() {
-        let userInput = document.getElementById("userInput").value.trim();
-        if (!userInput) return;
-        let chatBox = document.getElementById("chatBox");
-        
-        let userMessage = document.createElement("div");
-        userMessage.classList.add("bg-green-500", "text-white", "p-2", "rounded-lg", "max-w-xs", "self-end", "ml-auto", "shadow-md");
-        userMessage.innerText = userInput;
-        chatBox.appendChild(userMessage);
-        setTimeout(() => document.getElementById("userInput").value = "", 100);
-        
-        let botTyping = document.createElement("div");
-        botTyping.classList.add("bg-gray-300", "text-black", "p-2", "rounded-lg", "max-w-xs", "shadow-md", "self-start");
-        botTyping.innerText = "Typing...";
-        chatBox.appendChild(botTyping);
-        setTimeout(() => chatBox.scrollTop = chatBox.scrollHeight, 100);
-        
+async function sendMessage() {
+    let userInput = document.getElementById("userInput").value.trim();
+    if (!userInput) return;
+    let chatBox = document.getElementById("chatBox");
+    
+    let userMessage = document.createElement("div");
+    userMessage.classList.add("bg-green-500", "text-white", "p-2", "rounded-lg", "max-w-xs", "self-end", "ml-auto", "shadow-md");
+    userMessage.innerText = userInput;
+    chatBox.appendChild(userMessage);
+    document.getElementById("userInput").value = "";
+
+    let botTyping = document.createElement("div");
+    botTyping.classList.add("bg-gray-300", "text-black", "p-2", "rounded-lg", "max-w-xs", "shadow-md", "self-start");
+    botTyping.innerText = "Typing...";
+    chatBox.appendChild(botTyping);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    try {
         let aiResponse = await getAIResponse(userInput);
         chatBox.removeChild(botTyping);
-        
+
         let botMessage = document.createElement("div");
         botMessage.classList.add("bg-green-200", "text-black", "p-2", "rounded-lg", "max-w-xs", "shadow-md", "self-start");
         botMessage.innerHTML = aiResponse;
         chatBox.appendChild(botMessage);
-        setTimeout(() => chatBox.scrollTop = chatBox.scrollHeight, 100);
+    } catch (error) {
+        chatBox.removeChild(botTyping);
+        let errorMessage = document.createElement("div");
+        errorMessage.classList.add("bg-red-400", "text-white", "p-2", "rounded-lg", "max-w-xs", "shadow-md", "self-start");
+        errorMessage.innerText = "Error: Unable to fetch response.";
+        chatBox.appendChild(errorMessage);
     }
 
-    async function getAIResponse(userText) {
-        try {
-            let response = await fetch("https://smart-ewaste-backend.vercel.app/chatbot", { // Replace with actual backend URL
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: userText })
-            });
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
 
-            if (!response.ok) throw new Error("Server error");
-            
-            let data = await response.json();
-            return data.reply || "Sorry, I didn't understand. Please ask about e-waste disposal.";
-        } catch (error) {
-            console.error("Error:", error);
-            return "Something went wrong. Try again!";
-        }
+async function getAIResponse(userText) {
+    try {
+        let response = await fetch("https://smart-ewaste-backend.vercel.app/chatbot", { // Ensure this is your actual backend URL
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userText })
+        });
+
+        if (!response.ok) throw new Error("Server error");
+
+        let data = await response.json();
+        return data.reply || "Sorry, I didn't understand. Please ask about e-waste disposal.";
+    } catch (error) {
+        console.error("Error:", error);
+        return "Something went wrong. Try again!";
     }
+}
+
 </script>
 
 
