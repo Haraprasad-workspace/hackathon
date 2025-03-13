@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #121212, #1f1f1f);
+            font-family: 'Inter', sans-serif;
+        }
+        .profile-card {
+            background: rgba(40, 40, 40, 0.9);
+            border: 1px solid #4caf50;
+            transition: all 0.3s ease-in-out;
+        }
+        .profile-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 12px rgba(76, 175, 80, 0.5);
+        }
+        button {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-white">
+    
+    <!-- Navbar -->
+    <nav class="bg-black bg-opacity-90 p-4 flex justify-between items-center shadow-lg">
+        <h1 class="text-2xl font-bold text-green-400">E-Waste Dashboard</h1>
+        <div class="space-x-6">
+            <a href="dashboard.html" class="text-white hover:text-green-400 transition">Home</a>
+            <a href="pickup.html" class="text-white hover:text-green-400 transition">Pickup Scheduling</a>
+            <a href="chatbot.html" class="text-white hover:text-green-400 transition">AI Chatbot</a>
+            <a href="image_classification.html" class="text-white hover:text-green-400 transition">AI Waste Classification</a>
+            <a href="#" class="text-white hover:text-green-400 transition">FAQs</a>
+            <a href="profile.html" class="text-white hover:text-green-400 transition">Profile</a>
+            <a href="recycleOrTrash.html" class="text-white hover:text-green-400 transition">Learn with Games</a>
+        </div>
+        <button class="bg-green-500 px-4 py-2 rounded-full text-white hover:bg-green-600 transition">
+            Log Out
+        </button>
+    </nav>
+    
+    <!-- Profile Section -->
+    <div class="max-w-2xl mx-auto mt-12 p-8 profile-card rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold text-green-300 mb-6 text-center">Profile Details</h2>
+        <div class="space-y-6">
+            <div class="bg-gray-800 p-5 rounded-lg shadow-md">
+                <p class="text-gray-300 text-lg"><span class="font-bold text-green-400">Name:</span> John Doe</p>
+                <p class="text-gray-300 text-lg"><span class="font-bold text-green-400">Email:</span> johndoe@example.com</p>
+                <p class="text-gray-300 text-lg"><span class="font-bold text-green-400">Address:</span> 123 Green Street, Rajkot</p>
+            </div>
+            <button class="w-full bg-green-500 py-3 rounded-lg text-lg font-semibold text-white hover:bg-green-600 shadow-md">
+                Edit Profile
+            </button>
+            <button class="w-full bg-red-500 py-3 rounded-lg text-lg font-semibold text-white hover:bg-red-600 shadow-md">
+                Log Out
+            </button>
+        </div>
+    </div>
+    
+</body>
+</html>

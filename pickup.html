@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickup Scheduling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #121212, #1f1f1f);
+            font-family: 'Inter', sans-serif;
+        }
+        input, textarea {
+            border: 1px solid #4caf50;
+            transition: all 0.3s ease-in-out;
+        }
+        input:focus, textarea:focus {
+            border-color: #66ff66;
+            outline: none;
+            box-shadow: 0 0 8px rgba(102, 255, 102, 0.5);
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-black bg-opacity-90 p-4 flex justify-between items-center shadow-lg">
+        <h1 class="text-2xl font-bold text-green-400">E-Waste Dashboard</h1>
+        <div class="space-x-6">
+            <a href="dashboard.html" class="text-white hover:text-green-400 transition">Home</a>
+            <a href="pickup.html" class="text-white hover:text-green-400 transition">Pickup Scheduling</a>
+            <a href="chatbot.html" class="text-white hover:text-green-400 transition">AI Chatbot</a>
+            <a href="image_classification.html" class="text-white hover:text-green-400 transition">AI Waste Classification</a>
+            <a href="#" class="text-white hover:text-green-400 transition">FAQs</a>
+            <a href="profile.html" class="text-white hover:text-green-400 transition">Profile</a>
+            <a href="recycleOrTrash.html" class="text-white hover:text-green-400 transition">Learn with Games</a>
+        </div>
+        <button class="bg-green-500 px-4 py-2 rounded-full text-white hover:bg-green-600 transition">
+            Log Out
+        </button>
+    </nav>
+
+
+    <!-- Pickup Scheduling Form -->
+    <div class="max-w-2xl mx-auto mt-12 p-8 bg-gray-900 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold text-green-300 mb-6 text-center">Schedule a Pickup</h2>
+        <form>
+            <label class="block mb-2 text-lg font-medium">Pickup Date:</label>
+            <input type="date" class="w-full p-3 mb-4 bg-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring focus:ring-green-500">
+            
+            <label class="block mb-2 text-lg font-medium">Address:</label>
+            <textarea rows="4" class="w-full p-3 mb-4 bg-gray-800 rounded-lg text-white placeholder-gray-400 resize-none focus:ring focus:ring-green-500" placeholder="Enter your address"></textarea>
+            
+            <button class="w-full bg-green-500 py-3 rounded-full text-lg font-semibold text-white hover:bg-green-600 transition">
+                Submit Request
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>

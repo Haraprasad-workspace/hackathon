@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycle or Trash? - Button Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-green-100 to-green-300 min-h-screen flex flex-col items-center justify-center pt-20">
+
+    <!-- Navbar (Fixed at Top) -->
+    <nav class="fixed top-0 left-0 w-full bg-black bg-opacity-90 p-4 flex justify-between items-center shadow-lg z-50">
+        <h1 class="text-2xl font-bold text-green-400">E-Waste Dashboard</h1>
+        <div class="space-x-6">
+            <a href="dashboard.html" class="text-white hover:text-green-400 transition">Home</a>
+            <a href="pickup.html" class="text-white hover:text-green-400 transition">Pickup Scheduling</a>
+            <a href="chatbot.html" class="text-white hover:text-green-400 transition">AI Chatbot</a>
+            <a href="image_classification.html" class="text-white hover:text-green-400 transition">AI Waste Classification</a>
+            <a href="#" class="text-white hover:text-green-400 transition">FAQs</a>
+            <a href="profile.html" class="text-white hover:text-green-400 transition">Profile</a>
+            <a href="recycleOrTrash.html" class="text-white hover:text-green-400 transition">Learn with Games</a>
+        </div>
+        <button class="bg-green-500 px-4 py-2 rounded-full text-white hover:bg-green-600 transition">
+            Log Out
+        </button>
+    </nav>
+
+    <!-- Game Section -->
+    <div class="max-w-lg w-full bg-white shadow-lg rounded-lg p-6 text-center mt-8">
+        <h1 class="text-2xl font-bold text-green-700 mb-4">♻️ Recycle or Trash? 🚮</h1>
+        <p class="text-gray-700 mb-2">Click the correct button below!</p>
+
+        <!-- Game Card -->
+        <div id="game-card" class="w-full bg-gray-100 shadow-md p-6 rounded-lg text-2xl font-semibold text-gray-800 my-4 transition-transform duration-300">
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-center gap-4">
+            <button onclick="checkAnswer('recycle')" 
+                class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-transform duration-200 hover:scale-105">
+                ♻️ Recycle
+            </button>
+
+            <button onclick="checkAnswer('trash')" 
+                class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-transform duration-200 hover:scale-105">
+                🚮 Trash
+            </button>
+        </div>
+
+        <!-- Result Message -->
+        <p id="result" class="mt-4 text-lg font-semibold"></p>
+        <p id="fact" class="text-sm text-gray-600 mt-2"></p>
+
+        <!-- Next Item Button -->
+        <button onclick="nextItem()" 
+            class="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-transform duration-200 hover:scale-105">
+            Next Item
+        </button>
+    </div>
+
+    <script>
+        const items = [
+            { name: "Old Laptop", type: "recycle", fact: "Laptops contain valuable metals like gold and silver that can be reused." },
+            { name: "Used Battery", type: "recycle", fact: "Batteries contain hazardous chemicals. Always recycle them properly." },
+            { name: "Plastic Bottle", type: "recycle", fact: "Plastic bottles should go in plastic recycling, not e-waste bins." },
+            { name: "Broken Charger", type: "recycle", fact: "Chargers contain copper and other metals that can be recycled." }
+        ];
+
+        let currentIndex = 0;
+        let card = document.getElementById("game-card");
+        let result = document.getElementById("result");
+
+        function loadItem() {
+            card.textContent = items[currentIndex].name;
+            result.textContent = "";
+            result.classList.remove("text-green-600", "text-red-600");
+            document.getElementById("fact").textContent = "";
+            card.style.transform = "scale(1)";
+        }
+
+        function checkAnswer(choice) {
+            let item = items[currentIndex];
+            result.textContent = (choice === item.type) ? "✅ Correct!" : "❌ Wrong! Try again.";
+            
+            result.classList.remove("text-green-600", "text-red-600"); // Reset colors
+            result.classList.add(choice === item.type ? "text-green-600" : "text-red-600");
+
+            document.getElementById("fact").textContent = "💡 " + item.fact;
+            card.style.transform = "scale(1.05)";
+        }
+
+        function nextItem() {
+            currentIndex = (currentIndex + 1) % items.length;
+            loadItem();
+        }
+
+        loadItem();
+    </script>
+</body>
+</html>
